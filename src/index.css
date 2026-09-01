@@ -1,0 +1,14 @@
+@import './styles/reset.css';
+@import 'tailwindcss';
+
+@layer base {
+  body {
+    @apply antialiased;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      'Segoe UI',
+      sans-serif;
+  }
+}
