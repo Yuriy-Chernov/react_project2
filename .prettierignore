@@ -4,3 +4,4 @@ pnpm-lock.yaml
 dist-ssr
 coverage
 .husky
+src/routeTree.gen.ts
