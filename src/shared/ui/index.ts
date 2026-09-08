@@ -1,4 +1,7 @@
 export { Badge, type BadgeProps } from './badge'
 export { Button, type ButtonProps } from './button'
+export { EmptyState, type EmptyStateProps } from './empty-state'
+export { ErrorState, type ErrorStateProps } from './error-state'
 export { Cart, Close, Heart, Logo, Search, User, type IconProps } from './icons'
 export { Input, type InputProps } from './input'
+export { Spinner, type SpinnerProps } from './spinner'

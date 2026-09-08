@@ -1,0 +1,3 @@
+const PRODUCTS_LIMIT = 32
+
+export { PRODUCTS_LIMIT }
