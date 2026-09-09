@@ -13,7 +13,7 @@ function CatalogTags({ tags, activeTag }: CatalogTagsProps) {
   }
 
   return (
-    <nav aria-label="Теги" className="mt-4 flex flex-wrap gap-2">
+    <nav aria-label="Tags" className="mt-4 flex flex-wrap gap-2">
       {tags.map((tag) => {
         const isActive = tag === activeTag
 

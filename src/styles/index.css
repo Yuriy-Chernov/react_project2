@@ -16,3 +16,7 @@
       sans-serif;
   }
 }
+
+@theme {
+  --color-header: #5c5d67;
+}

@@ -3,6 +3,7 @@ import { Link } from '@tanstack/react-router'
 import { formatPrice, type Product } from '@/entities/product'
 import { ProductActions } from '@/features/product-actions'
 import { Badge } from '@/shared/ui'
+import { ProductStock } from '@/widgets/product-stock'
 
 import { ProductGallery } from './product-gallery'
 
@@ -20,6 +21,7 @@ function ProductDetails({ product }: ProductDetailsProps) {
       <div className="flex flex-col gap-4">
         <h1 className="text-3xl font-semibold text-zinc-900">{product.title}</h1>
         <p className="text-2xl font-semibold text-zinc-900">{formatPrice(product.price)}</p>
+        <ProductStock stock={product.stock} />
         <p className="text-zinc-700">{product.description}</p>
 
         {product.tags.length > 0 ? (

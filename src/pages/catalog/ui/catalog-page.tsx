@@ -10,14 +10,14 @@ const catalogRoute = getRouteApi('/_authenticated/')
 
 function getEmptyDescription(q?: string, tag?: string) {
   if (q) {
-    return `По запросу «${q}» товары не найдены`
+    return `No products found for query «${q}»`
   }
 
   if (tag) {
-    return `Нет товаров с тегом «${tag}»`
+    return `No products found for tag «${tag}»`
   }
 
-  return 'Попробуйте изменить запрос или выбрать другой тег'
+  return 'Try changing the query or selecting another tag'
 }
 
 function CatalogPage() {
@@ -26,12 +26,12 @@ function CatalogPage() {
   const tags = data ? getTopTags(data.products) : []
   const products =
     data && !q && tag ? filterProductsByTag(data.products, tag) : (data?.products ?? [])
-  const errorMessage = error instanceof ApiError ? error.message : 'Не удалось загрузить товары'
+  const errorMessage = error instanceof ApiError ? error.message : 'Failed to load products'
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-10">
       <h1 className="text-2xl font-semibold">
-        {q ? `Поиск: ${q}` : tag ? `Каталог · ${tag}` : 'Каталог'}
+        {q ? `Search: ${q}` : tag ? `Catalog · ${tag}` : 'Catalog'}
       </h1>
 
       {tags.length > 0 ? <CatalogTags tags={tags} activeTag={q ? undefined : tag} /> : null}
@@ -81,7 +81,7 @@ function CatalogBody({
   }
 
   if (isSuccess && products.length === 0) {
-    return <EmptyState title="Ничего не найдено" description={emptyDescription} />
+    return <EmptyState title="Nothing found" description={emptyDescription} />
   }
 
   if (isSuccess) {

@@ -1,13 +1,19 @@
 import { Link } from '@tanstack/react-router'
 
+import { getCartCount, useCart } from '@/entities/cart'
 import { useSession } from '@/entities/session'
+import { useWishlist } from '@/entities/wishlist'
 import { useLogout } from '@/features/auth'
 import { CatalogSearch } from '@/features/search-products'
-import { Button, Cart, Heart, Logo, User } from '@/shared/ui'
+import { Badge, Button, Cart, Heart, Logo, User } from '@/shared/ui'
 
 function Header() {
   const { data: user } = useSession()
   const logout = useLogout()
+  const { items: cartItems } = useCart()
+  const { items: wishlistItems } = useWishlist()
+  const cartCount = getCartCount(cartItems)
+  const wishlistCount = wishlistItems.length
 
   return (
     <header className="bg-zinc-950 text-white">
@@ -20,14 +26,37 @@ function Header() {
 
         <nav className="flex shrink-0 items-center gap-1">
           <Button asChild variant="ghost" className="text-white hover:bg-zinc-800 hover:text-white">
-            <Link to="/cart">
-              <Cart />
+            <Link to="/cart" aria-label={cartCount > 0 ? `Cart, ${cartCount}` : 'Cart'}>
+              <span className="relative">
+                <Cart />
+                {cartCount > 0 ? (
+                  <Badge
+                    variant="secondary"
+                    className="absolute -top-2 -right-2 h-5 min-w-5 justify-center px-1"
+                  >
+                    {cartCount}
+                  </Badge>
+                ) : null}
+              </span>
               Cart
             </Link>
           </Button>
           <Button asChild variant="ghost" className="text-white hover:bg-zinc-800 hover:text-white">
-            <Link to="/wishlist">
-              <Heart />
+            <Link
+              to="/wishlist"
+              aria-label={wishlistCount > 0 ? `Wishlist, ${wishlistCount}` : 'Wishlist'}
+            >
+              <span className="relative">
+                <Heart />
+                {wishlistCount > 0 ? (
+                  <Badge
+                    variant="secondary"
+                    className="absolute -top-2 -right-2 h-5 min-w-5 justify-center px-1"
+                  >
+                    {wishlistCount}
+                  </Badge>
+                ) : null}
+              </span>
               Wishlist
             </Link>
           </Button>

@@ -29,19 +29,19 @@ function LoginForm({ from }: LoginFormProps) {
     loginMutation.error instanceof ApiError
       ? loginMutation.error.message
       : loginMutation.isError
-        ? 'Не удалось войти'
+        ? 'Failed to login'
         : null
 
   return (
     <section className="mx-auto max-w-md px-4 py-10">
-      <h1 className="text-2xl font-semibold">Вход</h1>
+      <h1 className="text-2xl font-semibold">Login</h1>
 
       <form
         className="mt-6 flex flex-col gap-4"
         onSubmit={handleSubmit((values) => loginMutation.mutate(values))}
       >
         <label className="flex flex-col gap-1.5 text-sm font-medium">
-          Логин
+          Login
           <Input
             autoComplete="username"
             aria-invalid={Boolean(errors.username)}
@@ -53,7 +53,7 @@ function LoginForm({ from }: LoginFormProps) {
         </label>
 
         <label className="flex flex-col gap-1.5 text-sm font-medium">
-          Пароль
+          Password
           <Input
             type="password"
             autoComplete="current-password"
@@ -68,7 +68,7 @@ function LoginForm({ from }: LoginFormProps) {
         {errorMessage ? <p className="text-sm text-red-600">{errorMessage}</p> : null}
 
         <Button type="submit" disabled={loginMutation.isPending}>
-          {loginMutation.isPending ? 'Вход…' : 'Войти'}
+          {loginMutation.isPending ? 'Login…' : 'Login'}
         </Button>
       </form>
     </section>

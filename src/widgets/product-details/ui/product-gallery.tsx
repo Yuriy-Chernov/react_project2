@@ -30,7 +30,7 @@ function ProductGallery({ title, images }: ProductGalleryProps) {
               <li key={`${image}-${index}`}>
                 <button
                   type="button"
-                  aria-label={`${title}, фото ${index + 1}`}
+                  aria-label={`${title}, photo ${index + 1}`}
                   aria-pressed={isActive}
                   onClick={() => setActiveIndex(index)}
                   className={cn(

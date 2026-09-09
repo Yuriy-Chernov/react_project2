@@ -8,7 +8,7 @@ function Spinner({ className, ...props }: SpinnerProps) {
   return (
     <div
       role="status"
-      aria-label="Загрузка"
+      aria-label="Loading"
       className={cn(
         'size-8 animate-spin rounded-full border-4 border-zinc-200 border-t-zinc-900',
         className,

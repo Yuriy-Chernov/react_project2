@@ -14,12 +14,12 @@ function ProductPage() {
   const { data, error, isPending, isError, isSuccess, refetch } = useProduct(
     isValidId ? productId : 0,
   )
-  const errorMessage = error instanceof ApiError ? error.message : 'Не удалось загрузить товар'
+  const errorMessage = error instanceof ApiError ? error.message : 'Failed to load product'
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-10">
       <Link to="/" className="text-sm text-zinc-600 underline hover:text-zinc-900">
-        Назад к каталогу
+        Back to catalog
       </Link>
 
       <ProductBody
@@ -55,7 +55,7 @@ function ProductBody({
   onRetry,
 }: ProductBodyProps) {
   if (!isValidId) {
-    return <EmptyState title="Товар не найден" description="Проверьте адрес страницы" />
+    return <EmptyState title="Product not found" description="Check the page address" />
   }
 
   if (isPending) {

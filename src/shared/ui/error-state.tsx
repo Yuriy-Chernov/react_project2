@@ -14,7 +14,7 @@ function ErrorState({ message, onRetry }: ErrorStateProps) {
       <p>{message}</p>
       {onRetry ? (
         <Button type="button" variant="secondary" size="sm" className="mt-3" onClick={onRetry}>
-          Повторить
+          Retry
         </Button>
       ) : null}
     </div>
