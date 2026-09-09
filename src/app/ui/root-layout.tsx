@@ -1,5 +1,6 @@
 import { Outlet } from '@tanstack/react-router'
 
+import { CartFab } from '@/widgets/cart-fab'
 import { Footer } from '@/widgets/footer'
 import { Header } from '@/widgets/header'
 
@@ -11,6 +12,7 @@ function RootLayout() {
         <Outlet />
       </main>
       <Footer />
+      <CartFab />
     </div>
   )
 }
