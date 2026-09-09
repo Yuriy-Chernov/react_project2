@@ -1,12 +1,16 @@
 import { Link } from '@tanstack/react-router'
+import { useState } from 'react'
 
 import { getCartCount, getCartTotal, useCart, type CartItem } from '@/entities/cart'
 import { canIncreaseQuantity, formatPrice } from '@/entities/product'
+import { CheckoutForm } from '@/features/checkout'
 import { Button, Close, EmptyState } from '@/shared/ui'
 import { ListsTabs } from '@/widgets/lists-tabs'
 
 function CartPage() {
-  const { items, add, remove, decrease, clear } = useCart()
+  const { items, add, remove, decrease } = useCart()
+  const [isOrderCreated, setIsOrderCreated] = useState(false)
+  const [isCheckout, setIsCheckout] = useState(false)
   const count = getCartCount(items)
   const total = getCartTotal(items)
 
@@ -15,9 +19,7 @@ function CartPage() {
       <h1 className="text-2xl font-semibold">Cart</h1>
       <ListsTabs />
 
-      {items.length === 0 ? (
-        <EmptyState title="Cart is empty" description="Add products from the catalog" />
-      ) : (
+      {items.length > 0 ? (
         <>
           <ul className="mt-6 divide-y divide-zinc-200 border-y border-zinc-200">
             {items.map((item) => (
@@ -31,15 +33,25 @@ function CartPage() {
             ))}
           </ul>
 
-          <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-            <p className="text-lg font-semibold">
-              Total · {count} {count === 1 ? 'item' : 'items'} · {formatPrice(total)}
-            </p>
-            <Button type="button" onClick={clear}>
+          <p className="mt-6 text-lg font-semibold">
+            Total · {count} {count === 1 ? 'item' : 'items'} · {formatPrice(total)}
+          </p>
+
+          {isCheckout ? (
+            <CheckoutForm
+              onBack={() => setIsCheckout(false)}
+              onCreated={() => setIsOrderCreated(true)}
+            />
+          ) : (
+            <Button type="button" className="mt-6" onClick={() => setIsCheckout(true)}>
               Buy
             </Button>
-          </div>
+          )}
         </>
+      ) : isOrderCreated ? (
+        <EmptyState title="Order created" description="Thank you for your purchase" />
+      ) : (
+        <EmptyState title="Cart is empty" description="Add products from the catalog" />
       )}
     </section>
   )
