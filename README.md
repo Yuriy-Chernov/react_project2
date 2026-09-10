@@ -5,6 +5,16 @@
 Репозиторий: https://github.com/Yuriy-Chernov/react_project2
 Деплой: https://react-project2-alpha-one.vercel.app/
 
+## Lighthouse
+
+### Desktop
+
+![Lighthouse Desktop](docs/lighthouse-desktop.png)
+
+### Mobile
+
+![Lighthouse Mobile](docs/lighthouse-mobile.png)
+
 ## Функциональность
 
 - Авторизация через DummyJSON (`/auth/login`, `/auth/me`), защищённые маршруты.
