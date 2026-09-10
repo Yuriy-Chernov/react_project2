@@ -66,7 +66,7 @@ type CartRowProps = {
 
 function CartRow({ item, onIncrease, onDecrease, onRemove }: CartRowProps) {
   return (
-    <li className="flex gap-4 py-4">
+    <li className="grid grid-cols-[5rem_minmax(0,1fr)] gap-x-4 gap-y-3 py-4 min-[601px]:flex min-[601px]:items-center">
       <Link
         to="/product/$id"
         params={{ id: String(item.id) }}
@@ -75,54 +75,53 @@ function CartRow({ item, onIncrease, onDecrease, onRemove }: CartRowProps) {
         <img src={item.thumbnail} alt={item.title} className="size-full object-cover" />
       </Link>
 
-      <div className="flex min-w-0 flex-1 flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-        <div className="min-w-0">
-          <Link
-            to="/product/$id"
-            params={{ id: String(item.id) }}
-            className="font-medium text-zinc-900 hover:underline"
-          >
-            {item.title}
-          </Link>
-          <p className="text-sm text-zinc-600">{formatPrice(item.price)}</p>
-        </div>
+      <div className="min-w-0 min-[601px]:flex-1">
+        <Link
+          to="/product/$id"
+          params={{ id: String(item.id) }}
+          className="font-medium text-zinc-900 hover:underline"
+        >
+          {item.title}
+        </Link>
+        <p className="text-sm text-zinc-600">{formatPrice(item.price)}</p>
+      </div>
 
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1">
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
-              aria-label={`Decrease ${item.title} quantity`}
-              onClick={onDecrease}
-            >
-              −
-            </Button>
-            <span className="min-w-6 text-center tabular-nums">{item.quantity}</span>
-            <Button
-              type="button"
-              variant="secondary"
-              size="sm"
-              disabled={!canIncreaseQuantity(item.quantity, item.stock)}
-              aria-label={`Increase ${item.title} quantity`}
-              onClick={onIncrease}
-            >
-              +
-            </Button>
-          </div>
-          <p className="min-w-20 text-right font-medium">
-            {formatPrice(item.price * item.quantity)}
-          </p>
+      <div className="col-span-2 flex w-full min-w-0 items-center gap-3 min-[601px]:w-auto min-[601px]:shrink-0">
+        <div className="flex items-center gap-1">
           <Button
             type="button"
-            variant="ghost"
-            size="icon"
-            aria-label={`Remove ${item.title} from cart`}
-            onClick={onRemove}
+            variant="secondary"
+            size="sm"
+            aria-label={`Decrease ${item.title} quantity`}
+            onClick={onDecrease}
           >
-            <Close />
+            −
+          </Button>
+          <span className="min-w-6 text-center tabular-nums">{item.quantity}</span>
+          <Button
+            type="button"
+            variant="secondary"
+            size="sm"
+            disabled={!canIncreaseQuantity(item.quantity, item.stock)}
+            aria-label={`Increase ${item.title} quantity`}
+            onClick={onIncrease}
+          >
+            +
           </Button>
         </div>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          className="min-[601px]:order-last"
+          aria-label={`Remove ${item.title} from cart`}
+          onClick={onRemove}
+        >
+          <Close />
+        </Button>
+        <p className="ml-auto font-medium tabular-nums min-[601px]:min-w-20 min-[601px]:text-right">
+          {formatPrice(item.price * item.quantity)}
+        </p>
       </div>
     </li>
   )
