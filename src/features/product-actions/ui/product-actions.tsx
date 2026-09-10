@@ -28,7 +28,7 @@ function ProductActions({ product }: ProductActionsProps) {
         }
         onClick={() => toggle(product)}
       >
-        <Heart className={cn(inWishlist ? 'text-red-600' : 'text-zinc-400')} />
+        <Heart className={cn(inWishlist ? 'text-red-600' : 'text-zinc-600')} />
       </Button>
     </div>
   )

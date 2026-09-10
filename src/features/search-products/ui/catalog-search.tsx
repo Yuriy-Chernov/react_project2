@@ -67,7 +67,7 @@ function CatalogSearch() {
       className="relative min-w-0 flex-1 [@media(max-width:800px)]:order-last [@media(max-width:800px)]:basis-full"
       onSubmit={handleSubmit}
     >
-      <Search className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-zinc-400, " />
+      <Search className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-zinc-600" />
       <Input
         type="search"
         name="q"
@@ -75,7 +75,8 @@ function CatalogSearch() {
         onChange={handleChange}
         placeholder="Search"
         autoComplete="off"
-        className="h-10 bg-transparent pl-9 text-white placeholder:text-white focus-visible:ring-white"
+        aria-label="Search"
+        className="h-10 bg-white pl-9 text-zinc-900 placeholder:text-zinc-600 placeholder:opacity-100"
       />
     </form>
   )
