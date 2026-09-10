@@ -38,7 +38,7 @@ function TabLink({ to, count, children }: TabLinkProps) {
       aria-current={isActive ? 'page' : undefined}
       className={cn(
         'inline-flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium',
-        isActive ? 'bg-zinc-900 text-white' : 'text-zinc-600 hover:bg-zinc-100',
+        isActive ? 'bg-primary text-white' : 'text-zinc-600 hover:bg-zinc-100',
       )}
     >
       {children}

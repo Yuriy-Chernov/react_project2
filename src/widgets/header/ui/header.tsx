@@ -16,7 +16,7 @@ function Header() {
   const wishlistCount = wishlistItems.length
 
   return (
-    <header className="bg-zinc-950 text-white">
+    <header className="bg-primary text-white py-3">
       <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3">
         <Link to="/" aria-label="HomePage" className="shrink-0 text-white">
           <Logo />
@@ -32,7 +32,7 @@ function Header() {
                 {cartCount > 0 ? (
                   <Badge
                     variant="secondary"
-                    className="absolute -top-2 -right-2 h-5 min-w-5 justify-center px-1"
+                    className="absolute -top-2 -right-2 h-4 min-w-4 justify-center px-1 text-xs"
                   >
                     {cartCount}
                   </Badge>
@@ -51,7 +51,7 @@ function Header() {
                 {wishlistCount > 0 ? (
                   <Badge
                     variant="secondary"
-                    className="absolute -top-2 -right-2 h-5 min-w-5 justify-center px-1"
+                    className="absolute -top-2 -right-2 h-4 min-w-4 justify-center px-1 text-xs"
                   >
                     {wishlistCount}
                   </Badge>

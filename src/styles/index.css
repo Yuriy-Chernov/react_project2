@@ -1,4 +1,4 @@
-@import './reset.css';
+@import './reset.css' layer(base);
 @import 'tailwindcss';
 
 @tailwind base;
@@ -18,5 +18,6 @@
 }
 
 @theme {
+  --color-primary: #c4454d;
   --color-header: #5c5d67;
 }

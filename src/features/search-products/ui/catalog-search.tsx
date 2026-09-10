@@ -63,7 +63,7 @@ function CatalogSearch() {
 
   return (
     <form role="search" className="relative min-w-0 flex-1" onSubmit={handleSubmit}>
-      <Search className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-zinc-400" />
+      <Search className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-zinc-400, " />
       <Input
         type="search"
         name="q"
@@ -71,7 +71,7 @@ function CatalogSearch() {
         onChange={handleChange}
         placeholder="Search"
         autoComplete="off"
-        className="h-10 border-zinc-700 bg-zinc-900 pl-9 text-white placeholder:text-zinc-500 focus-visible:ring-white"
+        className="h-10 bg-transparent pl-9 text-white placeholder:text-white focus-visible:ring-white"
       />
     </form>
   )
