@@ -18,8 +18,8 @@ function ProductPage() {
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-10">
-      <Link to="/" className="text-sm text-zinc-600 underline hover:text-zinc-900">
-        Back to catalog
+      <Link to="/" className="text-md text-zinc-600 hover:text-zinc-900">
+        ← Back to catalog
       </Link>
 
       <ProductBody

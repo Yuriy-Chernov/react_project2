@@ -1,6 +1,6 @@
 import { Link } from '@tanstack/react-router'
 
-import { cn } from '@/shared/lib/cn'
+import { Badge } from '@/shared/ui'
 
 type CatalogTagsProps = {
   tags: string[]
@@ -23,12 +23,13 @@ function CatalogTags({ tags, activeTag }: CatalogTagsProps) {
             to="/"
             search={isActive ? {} : { tag }}
             aria-current={isActive ? 'true' : undefined}
-            className={cn(
-              'inline-flex items-center rounded-full px-2.5  text-xs font-medium p-3 capitalize tracking-widest',
-              isActive ? 'bg-primary text-white' : 'bg-zinc-100 text-zinc-800 hover:bg-zinc-200',
-            )}
           >
-            {tag}
+            <Badge
+              variant={isActive ? 'primary' : 'secondary'}
+              className="rounded-md p-3 capitalize tracking-widest"
+            >
+              {tag}
+            </Badge>
           </Link>
         )
       })}

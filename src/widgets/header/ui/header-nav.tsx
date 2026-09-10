@@ -52,7 +52,7 @@ function HeaderNavItems({
             {cartCount > 0 ? (
               <Badge
                 variant="secondary"
-                className="absolute -top-2 -right-2 h-4 min-w-4 justify-center px-1 text-xs"
+                className="absolute rounded-full -top-2 opacity-80 -right-2 h-4 min-w-4 justify-center px-1 text-xs"
               >
                 {cartCount}
               </Badge>
@@ -72,7 +72,7 @@ function HeaderNavItems({
             {wishlistCount > 0 ? (
               <Badge
                 variant="secondary"
-                className="absolute -top-2 -right-2 h-4 min-w-4 justify-center px-1 text-xs"
+                className="absolute rounded-full -top-2 opacity-80 -right-2 h-4 min-w-4 justify-center px-1 text-xs"
               >
                 {wishlistCount}
               </Badge>

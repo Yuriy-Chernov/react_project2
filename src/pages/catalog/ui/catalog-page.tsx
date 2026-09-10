@@ -31,7 +31,11 @@ function CatalogPage() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-10">
       <h1 className="text-2xl font-semibold">
-        {q ? `Search: ${q}` : tag ? `Catalog · ${tag}` : 'Catalog'}
+        {q
+          ? `Search: ${q}`
+          : tag
+            ? `Catalog → ${tag.charAt(0).toUpperCase() + tag.slice(1)}`
+            : 'Catalog'}
       </h1>
 
       {tags.length > 0 ? <CatalogTags tags={tags} activeTag={q ? undefined : tag} /> : null}
@@ -86,7 +90,7 @@ function CatalogBody({
 
   if (isSuccess) {
     return (
-      <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      <ul className="mx-auto mt-6 grid max-w-72 grid-cols-1 gap-4 sm:max-w-none sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => (
           <li key={product.id}>
             <ProductCard product={product} />

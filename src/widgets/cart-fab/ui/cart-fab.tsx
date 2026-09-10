@@ -28,7 +28,7 @@ function CartFab() {
           {count > 0 ? (
             <Badge
               variant="secondary"
-              className="absolute -top-2 -right-2 h-5 min-w-5 justify-center px-1"
+              className="absolute rounded-full -top-2.5 opacity-80 -right-2.5 h-4 min-w-4 justify-center px-1 text-xs"
             >
               {count}
             </Badge>
