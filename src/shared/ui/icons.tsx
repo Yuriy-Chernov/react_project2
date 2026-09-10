@@ -123,6 +123,23 @@ function Heart({ className, ...props }: IconProps) {
   )
 }
 
+function Menu({ className, ...props }: IconProps) {
+  return (
+    <svg
+      width={20}
+      height={20}
+      viewBox="0 0 24 24"
+      fill="none"
+      className={cn('shrink-0', className)}
+      {...props}
+    >
+      <path d="M4 18L20 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M4 12L20 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M4 6L20 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 function Close({ className, ...props }: IconProps) {
   return (
     <svg
@@ -141,5 +158,5 @@ function Close({ className, ...props }: IconProps) {
   )
 }
 
-export { Cart, Close, Heart, Logo, Search, User }
+export { Cart, Close, Heart, Logo, Menu, Search, User }
 export type { IconProps }

@@ -62,7 +62,11 @@ function CatalogSearch() {
   }
 
   return (
-    <form role="search" className="relative min-w-0 flex-1" onSubmit={handleSubmit}>
+    <form
+      role="search"
+      className="relative min-w-0 flex-1 [@media(max-width:800px)]:order-last [@media(max-width:800px)]:basis-full"
+      onSubmit={handleSubmit}
+    >
       <Search className="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 text-zinc-400, " />
       <Input
         type="search"
