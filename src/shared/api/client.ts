@@ -1,4 +1,4 @@
-import { getAccessToken } from '@/shared/lib/auth-token'
+import { clearAccessToken, getAccessToken } from '@/shared/lib/auth-token'
 
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://dummyjson.com/'
 
@@ -70,6 +70,10 @@ export async function apiClient<T>(path: string, options: ApiClientOptions = {})
   const data = await parseJson(response)
 
   if (!response.ok) {
+    if (response.status === 401) {
+      clearAccessToken()
+    }
+
     throw new ApiError(getErrorMessage(data, response.status), response.status, data)
   }
 

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useNavigate } from '@tanstack/react-router'
+import { useRouter } from '@tanstack/react-router'
 
 import { authMeQueryKey, login, toUser } from '@/entities/session'
 import { setAccessToken } from '@/shared/lib/auth-token'
@@ -14,14 +14,14 @@ function getRedirectPath(from: string | undefined) {
 
 function useLogin(from?: string) {
   const queryClient = useQueryClient()
-  const navigate = useNavigate()
+  const router = useRouter()
 
   return useMutation({
     mutationFn: login,
     onSuccess: (response) => {
       setAccessToken(response.accessToken)
       queryClient.setQueryData(authMeQueryKey, toUser(response))
-      void navigate({ href: getRedirectPath(from) })
+      void router.navigate({ href: getRedirectPath(from) })
     },
   })
 }
