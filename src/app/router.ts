@@ -1,11 +1,11 @@
 import { createRouter } from '@tanstack/react-router'
 
 import { routeTree } from '@/routeTree.gen'
-import { subscribeAccessToken } from '@/shared/lib/auth-token'
+import { subscribeAuthTokens } from '@/shared/lib/auth-token'
 
 const router = createRouter({ routeTree })
 
-subscribeAccessToken(() => {
+subscribeAuthTokens(() => {
   void router.invalidate()
 })
 

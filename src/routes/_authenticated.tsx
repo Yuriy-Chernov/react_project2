@@ -2,14 +2,14 @@ import { Outlet, createFileRoute, redirect } from '@tanstack/react-router'
 
 import { useSession } from '@/entities/session'
 import { ApiError } from '@/shared/api'
-import { getAccessToken } from '@/shared/lib/auth-token'
+import { getRefreshToken } from '@/shared/lib/auth-token'
 import { ErrorState, Spinner } from '@/shared/ui'
 import { CartFab } from '@/widgets/cart-fab'
 import { Header } from '@/widgets/header'
 
 export const Route = createFileRoute('/_authenticated')({
   beforeLoad: ({ location }) => {
-    if (!getAccessToken()) {
+    if (!getRefreshToken()) {
       throw redirect({
         to: '/login',
         search: { redirect: location.href },

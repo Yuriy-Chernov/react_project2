@@ -1,9 +1,21 @@
-import { clearAccessToken, getAccessToken } from '@/shared/lib/auth-token'
+import { clearAuthTokens, getAccessToken } from '@/shared/lib/auth-token'
 
 export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://dummyjson.com/'
 
-type ApiClientOptions = Omit<RequestInit, 'body'> & {
+type RequestOptions = Omit<RequestInit, 'body'> & {
   body?: unknown
+}
+
+type ApiClientOptions = RequestOptions & {
+  skipAuthRetry?: boolean
+}
+
+type UnauthorizedHandler = () => Promise<boolean>
+
+let handleUnauthorized: UnauthorizedHandler | null = null
+
+export function setUnauthorizedHandler(handler: UnauthorizedHandler) {
+  handleUnauthorized = handler
 }
 
 export class ApiError extends Error {
@@ -43,8 +55,7 @@ async function parseJson(response: Response): Promise<unknown> {
   return JSON.parse(text) as unknown
 }
 
-export async function apiClient<T>(path: string, options: ApiClientOptions = {}): Promise<T> {
-  const { body, headers: initHeaders, ...rest } = options
+function sendRequest(path: string, { body, headers: initHeaders, ...rest }: RequestOptions) {
   const headers = new Headers(initHeaders)
 
   if (!headers.has('Accept')) {
@@ -61,17 +72,29 @@ export async function apiClient<T>(path: string, options: ApiClientOptions = {})
     headers.set('Authorization', `Bearer ${token}`)
   }
 
-  const response = await fetch(resolveUrl(path), {
+  return fetch(resolveUrl(path), {
     ...rest,
     headers,
     body: body === undefined ? undefined : JSON.stringify(body),
   })
+}
+
+export async function apiClient<T>(path: string, options: ApiClientOptions = {}): Promise<T> {
+  const { skipAuthRetry, ...requestOptions } = options
+
+  let response = await sendRequest(path, requestOptions)
+
+  if (response.status === 401 && !skipAuthRetry && handleUnauthorized) {
+    if (await handleUnauthorized()) {
+      response = await sendRequest(path, requestOptions)
+    }
+  }
 
   const data = await parseJson(response)
 
   if (!response.ok) {
     if (response.status === 401) {
-      clearAccessToken()
+      clearAuthTokens()
     }
 
     throw new ApiError(getErrorMessage(data, response.status), response.status, data)

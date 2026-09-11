@@ -1,3 +1,5 @@
+import { type AuthTokens } from '@/shared/lib/auth-token'
+
 type User = {
   id: number
   username: string
@@ -8,10 +10,7 @@ type User = {
   image: string
 }
 
-type LoginResponse = User & {
-  accessToken: string
-  refreshToken: string
-}
+type LoginResponse = User & AuthTokens
 
 function toUser(response: LoginResponse): User {
   return {
