@@ -1,11 +1,18 @@
 import { createRouter } from '@tanstack/react-router'
 
+import { clearCart } from '@/entities/cart'
+import { clearWishlist } from '@/entities/wishlist'
 import { routeTree } from '@/routeTree.gen'
-import { subscribeAuthTokens } from '@/shared/lib/auth-token'
+import { getRefreshToken, subscribeAuthTokens } from '@/shared/lib/auth-token'
 
 const router = createRouter({ routeTree })
 
 subscribeAuthTokens(() => {
+  if (!getRefreshToken()) {
+    void clearCart()
+    void clearWishlist()
+  }
+
   void router.invalidate()
 })
 

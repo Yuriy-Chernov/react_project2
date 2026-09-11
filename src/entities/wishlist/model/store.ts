@@ -16,4 +16,14 @@ const getWishlistSnapshot = wishlistStore.getSnapshot
 const getWishlistServerSnapshot = wishlistStore.getServerSnapshot
 const persistWishlist = wishlistStore.persist
 
-export { getWishlistServerSnapshot, getWishlistSnapshot, persistWishlist, subscribeWishlist }
+function clearWishlist() {
+  return persistWishlist({ type: 'clear' })
+}
+
+export {
+  clearWishlist,
+  getWishlistServerSnapshot,
+  getWishlistSnapshot,
+  persistWishlist,
+  subscribeWishlist,
+}

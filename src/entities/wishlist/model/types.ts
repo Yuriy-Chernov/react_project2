@@ -8,6 +8,6 @@ type WishlistProduct = {
 
 type WishlistItem = WishlistProduct
 
-type WishlistAction = { type: 'toggle'; product: WishlistProduct }
+type WishlistAction = { type: 'toggle'; product: WishlistProduct } | { type: 'clear' }
 
 export type { WishlistAction, WishlistItem, WishlistProduct }

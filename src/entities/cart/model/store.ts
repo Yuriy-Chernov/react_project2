@@ -16,4 +16,8 @@ const getCartSnapshot = cartStore.getSnapshot
 const getCartServerSnapshot = cartStore.getServerSnapshot
 const persistCart = cartStore.persist
 
-export { getCartServerSnapshot, getCartSnapshot, persistCart, subscribeCart }
+function clearCart() {
+  return persistCart({ type: 'clear' })
+}
+
+export { clearCart, getCartServerSnapshot, getCartSnapshot, persistCart, subscribeCart }

@@ -20,6 +20,8 @@ function wishlistReducer(items: WishlistItem[], action: WishlistAction): Wishlis
         },
       ]
     }
+    case 'clear':
+      return []
   }
 }
 
