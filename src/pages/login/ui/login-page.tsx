@@ -7,7 +7,11 @@ const loginRoute = getRouteApi('/login')
 function LoginPage() {
   const { redirect } = loginRoute.useSearch()
 
-  return <LoginForm from={redirect} />
+  return (
+    <main className="flex flex-1 items-center justify-center">
+      <LoginForm from={redirect} />
+    </main>
+  )
 }
 
 export { LoginPage }

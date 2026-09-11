@@ -1,4 +1,4 @@
-import { Link, useRouterState } from '@tanstack/react-router'
+import { Link, useMatchRoute } from '@tanstack/react-router'
 
 import { getCartCount, useCart } from '@/entities/cart'
 import { Badge, Button, Cart } from '@/shared/ui'
@@ -6,13 +6,12 @@ import { Badge, Button, Cart } from '@/shared/ui'
 import { useScrolled } from '../lib/use-scrolled'
 
 function CartFab() {
-  const pathname = useRouterState({ select: (state) => state.location.pathname })
+  const matchRoute = useMatchRoute()
   const scrolled = useScrolled()
   const { items } = useCart()
   const count = getCartCount(items)
-  const isHiddenRoute = pathname === '/cart' || pathname === '/login'
 
-  if (isHiddenRoute || !scrolled) {
+  if (matchRoute({ to: '/cart' }) || !scrolled) {
     return null
   }
 

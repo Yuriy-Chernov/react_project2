@@ -5,7 +5,7 @@ import { getCartCount, useCart } from '@/entities/cart'
 import { useSession } from '@/entities/session'
 import { useWishlist } from '@/entities/wishlist'
 import { useLogout } from '@/features/auth'
-import { Badge, Button, Cart, Close, Heart, Menu, User } from '@/shared/ui'
+import { Badge, Button, Cart, Close, Heart, Menu } from '@/shared/ui'
 
 const MOBILE_NAV_QUERY = '(max-width: 600px)'
 
@@ -81,21 +81,12 @@ function HeaderNavItems({
           Wishlist
         </Link>
       </Button>
-      {username ? (
-        <>
-          {isStack ? null : <span className="hidden px-2 text-sm sm:inline">{username}</span>}
-          <Button type="button" variant="ghost" className={itemClassName} onClick={handleLogout}>
-            Logout
-          </Button>
-        </>
-      ) : (
-        <Button asChild variant="ghost" size={isStack ? 'md' : 'icon'} className={itemClassName}>
-          <Link to="/login" aria-label="Profile" onClick={onNavigate}>
-            <User />
-            {isStack ? 'Login' : null}
-          </Link>
-        </Button>
-      )}
+      {username && !isStack ? (
+        <span className="hidden px-2 text-sm sm:inline">{username}</span>
+      ) : null}
+      <Button type="button" variant="ghost" className={itemClassName} onClick={handleLogout}>
+        Logout
+      </Button>
     </>
   )
 }

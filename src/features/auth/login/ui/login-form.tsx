@@ -33,7 +33,7 @@ function LoginForm({ from }: LoginFormProps) {
         : null
 
   return (
-    <section className="mx-auto max-w-md px-4 py-10">
+    <section className="w-full max-w-md px-4 py-10">
       <h1 className="text-2xl font-semibold">Login</h1>
 
       <form
